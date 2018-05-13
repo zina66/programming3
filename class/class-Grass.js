@@ -1,4 +1,6 @@
-class Grass extends yndhanur {
+var yndhanur = require("./class.yndhanur.js");
+
+module.exports=class Grass extends yndhanur {
     mul() {
         this.multiply++;
         var emptyCells = this.chooseCell(0);

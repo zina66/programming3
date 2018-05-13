@@ -1,7 +1,9 @@
-class GrassEaterEater extends yndhanur{
+var yndhanur = require("./class.yndhanur.js");
+
+module.exports=class GrassEater extends yndhanur {
     constructor(x, y, index) {
         super(x, y, index);
-        this.energy = 6;
+        this.energy = 3;
         this.directions = [];
     }
     getNewCoordinates() {
@@ -29,7 +31,7 @@ class GrassEaterEater extends yndhanur{
             var newX = newCell[0];
             var newY = newCell[1];
             matrix[this.y][this.x] = 0;
-            matrix[newY][newX] = 3;
+            matrix[newY][newX] = 2;
             this.y = newY;
             this.x = newX;
 
@@ -41,24 +43,24 @@ class GrassEaterEater extends yndhanur{
     }
     eat() {
         this.getNewCoordinates();
-        var emptyCells = this.chooseCell(2);
+        var emptyCells = this.chooseCell(1);
         var newCell = random(emptyCells);
         if (newCell) {
             var newX = newCell[0];
             var newY = newCell[1];
             matrix[this.y][this.x] = 0;
-            matrix[newY][newX] = 3;
+            matrix[newY][newX] = 2;
             this.y = newY;
             this.x = newX;
             this.energy++;
 
-            for (var i in GrassEaterArr) {
-                if (newX == GrassEaterArr[i].x && newY == GrassEaterArr[i].y) {
-                    GrassEaterArr.splice(i, 1);
+            for (var i in grassArr) {
+                if (newX == grassArr[i].x && newY == grassArr[i].y) {
+                    grassArr.splice(i, 1);
                     break;
                 }
             }
-            if (this.energy >= 7) {
+            if (this.energy >= 15) {
                 this.mul();
             }
         }
@@ -69,23 +71,23 @@ class GrassEaterEater extends yndhanur{
     }
     mul() {
         this.getNewCoordinates();
-        var emptyCells = this.chooseCell(2);
+        var emptyCells = this.chooseCell(1);
         var newCell = random(emptyCells);
         if (newCell) {
             var newX = newCell[0];
             var newY = newCell[1];
             matrix[this.y][this.x] = 0;
-            matrix[newY][newX] = 3;
+            matrix[newY][newX] = 2;
             this.y = newY;
             this.x = newX;
-            var newGrassEaterEater = new GrassEaterEater(newX, newY, this.index);
-            GrassEaterEaterArr.push(newGrassEaterEater);
-            this.energy = 6;
+            var newGrassEater = new GrassEater(newX, newY, this.index);
+            GrassEaterArr.push(newGrassEater);
+            this.energy = 3;
         }
     }
     die() {
-        for (var i in GrassEaterEaterArr) {
-            if (this.x == GrassEaterEaterArr[i].x && this.y == GrassEaterEaterArr[i].y) {
+        for (var i in GrassEaterArr) {
+            if (this.x == GrassEaterArr[i].x && this.y == GrassEaterArr[i].y) {
                 matrix[this.y][this.x] = 0;
                 GrassEaterArr.splice(i, 1);
                 break;
