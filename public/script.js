@@ -1,3 +1,6 @@
+var xqanak = 40;
+var yqanak = 40;
+var side = 20;
 
 function setup() {
     for (var y = 0; y < yqanak; y++) {
@@ -12,12 +15,11 @@ function setup() {
             }
         }
     }
-    frameRate(1);
     createCanvas(matrix[0].length * side, matrix.length * side);
     background('#acacac');
 }
 
-function draw() {
+function gcel() {
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
             if (matrix[y][x] == 1) {

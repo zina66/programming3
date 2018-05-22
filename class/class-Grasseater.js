@@ -1,4 +1,4 @@
-var yndhanur = require("./class.yndhanur.js");
+var yndhanur = require("./class-yndhanur.js");
 
 module.exports=class GrassEater extends yndhanur {
     constructor(x, y, index) {

@@ -1,22 +1,27 @@
 {
-"name": "programming3",
-"version": "1.0.0",
-"description": "",
-"main": "app.js",
-"scripts": {
-"start":"node app.js",
-"test": "echo \"Error: no test specified\" && exit 1"
-},
-"repository": {
-"type": "git",
-"url": "git+https://github.com/zina66/programming3.git"
-},
-"author": "zina66",
-"license": "ISC",
-"dependencies": {
-"express": "^4.16.2"
-},
-"engines": {
-"node": "4.7.2"
-}
+  "name": "programming3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zina66/programming3.git"
+  },
+  "author": "zina66",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3",
+    "socket.io": "^2.1.1"
+  },
+  "engines": {
+    "node": "4.7.2"
+  },
+  "bugs": {
+    "url": "https://github.com/zina66/programming3/issues"
+  },
+  "homepage": "https://github.com/zina66/programming3#readme"
 }

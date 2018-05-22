@@ -16,7 +16,6 @@ var GrassEaterEater = require("./class/class-GrassEaterEater");
 var xqanak = 40;
 var yqanak = 40;
 var matrix = [];
-var side = 20;
 var rivArr = [];
 var grassArr = [];
 var GrassEaterArr = [];
@@ -63,4 +62,5 @@ function setInterval() {
     for (var i in lightningArr) {
         lightningArr[i].eat();
     }
+    io.socket.emit(gcel)
 }
