@@ -1,27 +1,45 @@
-var express = require("express");
+var express = require('express');
 var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
+var cords = [];
 
-app.use(express.static("public"));
-
-app.get("/", function (req, res) {
-    res.redirect("public/index.html");
+app.use(express.static("."));
+app.get('/', function (req, res) {
+    res.redirect('index.html');
 });
+server.listen(3000);
 
-app.listen(3000, function () {
-    console.log("Example is running on port 3000");
-});
-var Grass = require("./class/class-Grass");
-var Grasseater = require("./class/class-Grasseater");
-var GrassEaterEater = require("./class/class-GrassEaterEater");
+
+
+var Grass = require("./class/class-grass");
+var Grasseater = require("./class/class-grasseater");
+var GrassEaterEater = require("./class/class-grasseatereater");
+var lightning = require("./class/class-lightning");
+var river = require("./class/class-river");
+var yndhanur = require("./class/class-yndhanur");
+
 var xqanak = 40;
 var yqanak = 40;
-var matrix = [];
-var rivArr = [];
-var grassArr = [];
-var GrassEaterArr = [];
-var GrassEaterEaterArr = [];
-var lightningArr = [];
-var a = [];
+matrix = [];
+rivArr = [];
+grassArr = [];
+GrassEaterArr = [];
+GrassEaterEaterArr = [];
+lightningArr = [];
+
+for (var y = 0; y < yqanak; y++) {
+    matrix[y] = [x];
+    for (var x = 0; x < xqanak; x++) {
+        if (x + y < 54) {
+            matrix[y][x] = Math.floor(Math.random() * 5);
+        }
+        else {
+            matrix[y][x] = 5;
+
+        }
+    }
+}
 
 
 for (var y = 0; y < matrix.length; y++) {
@@ -48,19 +66,25 @@ for (var y = 0; y < matrix.length; y++) {
         }
     }
 }
-function setInterval() {
-    for (var i in grassArr) {
-        grassArr[i].mul();
+io.on('connection', function () {
+
+    function func() {
+        for (var i in grassArr) {
+            grassArr[i].mul();
+        }
+        for (var i in GrassEaterArr) {
+            GrassEaterArr[i].eat();
+            GrassEaterEaterArr[i].eat();
+        }
+        for (var i in rivArr) {
+            rivArr[i].eat();
+        }
+        for (var i in lightningArr) {
+            lightningArr[i].eat();
+        }
+        io.sockets.emit('matrix', matrix);
     }
-    for (var i in GrassEaterArr) {
-        GrassEaterArr[i].eat();
-        GrassEaterEaterArr[i].eat();
-    }
-    for (var i in rivArr) {
-        rivArr[i].eat();
-    }
-    for (var i in lightningArr) {
-        lightningArr[i].eat();
-    }
-    io.socket.emit(gcel)
-}
+    setInterval(func, 500);
+});
+
+

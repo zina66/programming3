@@ -1,4 +1,4 @@
-class yndhanur {
+module.exports = class yndhanur {
     constructor(x, y, index) {
         this.x = x;
         this.y = y;

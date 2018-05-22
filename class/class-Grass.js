@@ -4,7 +4,8 @@ module.exports = class Grass extends yndhanur {
     mul() {
         this.multiply++;
         var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
+        var index = Math.floar(Math.random() * emptyCells.length);
+        var newCell = emptyCells[index];
 
         if (newCell && this.multiply >= 8) {
             var newX = newCell[0];

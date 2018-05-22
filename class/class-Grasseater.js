@@ -25,7 +25,8 @@ module.exports=class GrassEater extends yndhanur {
     move() {
         this.getNewCoordinates();
         var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
+        var index = Math.floar(Math.random() * emptyCells.length);
+        var newCell = emptyCells[index];
         if (newCell) {
             this.energy--;
             var newX = newCell[0];
@@ -44,7 +45,8 @@ module.exports=class GrassEater extends yndhanur {
     eat() {
         this.getNewCoordinates();
         var emptyCells = this.chooseCell(1);
-        var newCell = random(emptyCells);
+        var index = Math.floar(Math.random() * emptyCells.length);
+        var newCell = emptyCells[index];
         if (newCell) {
             var newX = newCell[0];
             var newY = newCell[1];
@@ -72,7 +74,8 @@ module.exports=class GrassEater extends yndhanur {
     mul() {
         this.getNewCoordinates();
         var emptyCells = this.chooseCell(1);
-        var newCell = random(emptyCells);
+        var index = Math.floar(Math.random() * emptyCells.length);
+        var newCell = emptyCells[index];
         if (newCell) {
             var newX = newCell[0];
             var newY = newCell[1];
