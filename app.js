@@ -4,13 +4,11 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var cords = [];
 
-app.use(express.static("."));
+app.use(express.static("public"));
 app.get('/', function (req, res) {
-    res.redirect('index.html');
+    res.redirect('public/index.html');
 });
 server.listen(3000);
-
-
 
 var Grass = require("./class/class-grass");
 var Grasseater = require("./class/class-grasseater");
@@ -27,7 +25,6 @@ grassArr = [];
 GrassEaterArr = [];
 GrassEaterEaterArr = [];
 lightningArr = [];
-
 for (var y = 0; y < yqanak; y++) {
     matrix[y] = [x];
     for (var x = 0; x < xqanak; x++) {
@@ -49,7 +46,7 @@ for (var y = 0; y < matrix.length; y++) {
             grassArr.push(gr);
         }
         else if (matrix[y][x] == 2) {
-            var great = new GrassEater(x, y, 2);
+            var great = new Grasseater(x, y, 2);
             GrassEaterArr.push(great);
         }
         else if (matrix[y][x] == 3) {
@@ -66,9 +63,15 @@ for (var y = 0; y < matrix.length; y++) {
         }
     }
 }
+exanak = 0;
 io.on('connection', function () {
 
     function func() {
+        exanak++;
+        if (exanak == 10) {
+            k = "#55F457";
+        }
+        console.log(exanak);
         for (var i in grassArr) {
             grassArr[i].mul();
         }
@@ -82,9 +85,10 @@ io.on('connection', function () {
         for (var i in lightningArr) {
             lightningArr[i].eat();
         }
-        io.sockets.emit('matrix', matrix);
+        io.socket.emit('matrix', [matrix, k]);
     }
     setInterval(func, 500);
+
 });
 
 

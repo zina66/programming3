@@ -1,6 +1,6 @@
 var yndhanur = require("./class-yndhanur.js");
 
-module.exports=class GrassEater extends yndhanur {
+module.exports = class GrassEater extends yndhanur {
     constructor(x, y, index) {
         super(x, y, index);
         this.energy = 3;
@@ -25,7 +25,7 @@ module.exports=class GrassEater extends yndhanur {
     move() {
         this.getNewCoordinates();
         var emptyCells = this.chooseCell(0);
-        var index = Math.floar(Math.random() * emptyCells.length);
+        var index = Math.floor(Math.random() * emptyCells.length);
         var newCell = emptyCells[index];
         if (newCell) {
             this.energy--;
@@ -45,7 +45,7 @@ module.exports=class GrassEater extends yndhanur {
     eat() {
         this.getNewCoordinates();
         var emptyCells = this.chooseCell(1);
-        var index = Math.floar(Math.random() * emptyCells.length);
+        var index = Math.floor(Math.random() * emptyCells.length);
         var newCell = emptyCells[index];
         if (newCell) {
             var newX = newCell[0];

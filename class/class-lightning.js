@@ -1,4 +1,6 @@
-class lightning {
+var yndhanur = require("./class-yndhanur.js");
+
+module.exports = class lightning extends yndhanur {
     constructor(x, y, index) {
         super(x, y, index);
         this.energy = 2;
@@ -22,8 +24,9 @@ class lightning {
     }
     move() {
         this.getNewCoordinates();
-        var emptyCells = this.chooseCell(0);
-        var newCell = random(emptyCells);
+         var emptyCells = this.chooseCell(0);
+        var index = Math.floor(Math.random() * emptyCells.length);
+        var newCell = emptyCells[index];
         if (newCell) {
             this.die();
         }
@@ -32,7 +35,8 @@ class lightning {
         this.getNewCoordinates();
         this.multiply++;
         var emptyCells = this.chooseCell(1);
-        var newCell = random(emptyCells);
+        var index = Math.floor(Math.random() * emptyCells.length);
+        var newCell = emptyCells[index];
         if (newCell) {
             if (this.multiply >= 4) {
                 var newX = newCell[0];

@@ -1,4 +1,6 @@
-class river {
+var yndhanur = require("./class-yndhanur.js");
+
+module.exports = class river extends yndhanur {
     constructor(x, y, index) {
         super(x, y, index);
         this.directions = [];
