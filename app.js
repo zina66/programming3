@@ -25,6 +25,7 @@ grassArr = [];
 GrassEaterArr = [];
 GrassEaterEaterArr = [];
 lightningArr = [];
+weather = "vochinch";
 for (var y = 0; y < yqanak; y++) {
     matrix[y] = [x];
     for (var x = 0; x < xqanak; x++) {
@@ -63,6 +64,7 @@ for (var y = 0; y < matrix.length; y++) {
         }
     }
 }
+k = "acacac";
 exanak = 0;
 io.on('connection', function () {
 
@@ -70,6 +72,19 @@ io.on('connection', function () {
         exanak++;
         if (exanak == 10) {
             k = "#55F457";
+            weather = "spring";
+        }
+        else if (exanak == 20) {
+            k = "#F5F85F";
+            weather = "summer";
+        }
+        else if (exanak == 20) {
+            k = "#D9B250";
+            weather = "autmn";
+        }
+        else if (exanak == 20) {
+            k = "#C5E4ED";
+            weather = "winter";
         }
         console.log(exanak);
         for (var i in grassArr) {
@@ -80,12 +95,13 @@ io.on('connection', function () {
             GrassEaterEaterArr[i].eat();
         }
         for (var i in rivArr) {
+
             rivArr[i].eat();
         }
         for (var i in lightningArr) {
             lightningArr[i].eat();
         }
-        io.socket.emit('matrix', [matrix, k]);
+        io.sockets.emit('matrix', [matrix,k]);
     }
     setInterval(func, 500);
 

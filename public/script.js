@@ -5,15 +5,12 @@ var socket;
 var exanak = 1;
 
 function setup() {
+    io.sockets.on('matrix', gcel);
     socket = io.connect('http://localhost:3000');
     createCanvas(xqanak * side, yqanak * side);
     background('#acacac');
-    socket.on('matrix', gcel);
 }
-io.socket.on('matrix', function(data){
-    var col = data[1];
-    gcel(data[0],col);
-});
+
 
 function gcel(matrix) {
     for (var y = 0; y < matrix.length; y++) {
@@ -23,7 +20,7 @@ function gcel(matrix) {
                 rect(x * side, y * side, side, side);
             }
             else if (matrix[y][x] == 0) {
-                fill(col);
+                fill("k");
                 rect(x * side, y * side, side, side);
             }
             else if (matrix[y][x] == 2) {

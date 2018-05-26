@@ -23,5 +23,6 @@
   "bugs": {
     "url": "https://github.com/zina66/programming3/issues"
   },
-  "homepage": "https://github.com/zina66/programming3#readme"
+  "homepage": "https://github.com/zina66/programming3#readme",
+  "devDependencies": {}
 }
