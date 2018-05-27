@@ -30,6 +30,7 @@ module.exports = class lightning extends yndhanur {
         if (newCell) {
             this.die();
         }
+        lightningcount++;
     }
     eat() {
         this.getNewCoordinates();

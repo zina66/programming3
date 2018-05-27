@@ -26,6 +26,13 @@ GrassEaterArr = [];
 GrassEaterEaterArr = [];
 lightningArr = [];
 weather = "vochinch";
+grassbazm = 0;
+grasseaterbazm = 0;
+grasseatermernel = 0;
+grasseatereaterbazm = 0;
+grasseatereatermernel = 0;
+lightningcount = 0;
+
 for (var y = 0; y < yqanak; y++) {
     matrix[y] = [x];
     for (var x = 0; x < xqanak; x++) {
@@ -64,47 +71,70 @@ for (var y = 0; y < matrix.length; y++) {
         }
     }
 }
-k = "acacac";
 exanak = 0;
-io.on('connection', function () {
+var takter = 0;
+var obj = {
+    'grassbazmanal': [],
+    'grasseaterbazm': [],
+    'grasseatermernel': [],
+    'grasseatereaterbazm': [],
+    'grasseatereatermernel': [],
+    'lightning': []
+}
 
-    function func() {
-        exanak++;
-        if (exanak == 10) {
-            k = "#55F457";
-            weather = "spring";
-        }
-        else if (exanak == 20) {
-            k = "#F5F85F";
-            weather = "summer";
-        }
-        else if (exanak == 20) {
-            k = "#D9B250";
-            weather = "autmn";
-        }
-        else if (exanak == 20) {
-            k = "#C5E4ED";
-            weather = "winter";
-        }
-        console.log(exanak);
-        for (var i in grassArr) {
-            grassArr[i].mul();
-        }
-        for (var i in GrassEaterArr) {
-            GrassEaterArr[i].eat();
-            GrassEaterEaterArr[i].eat();
-        }
-        for (var i in rivArr) {
 
-            rivArr[i].eat();
-        }
-        for (var i in lightningArr) {
-            lightningArr[i].eat();
-        }
-        io.sockets.emit('matrix', [matrix,k]);
+io.on('connection', function () { });
+number = 0;
+
+function func() {
+    exanak++;
+    number++;
+    if (exanak % 10 == 8) {
+        weather = "spring";
     }
-    setInterval(func, 500);
+    else if (exanak % 10 == 7) {
+        weather = "summer";
+    }
+    else if (exanak % 10 == 6) {
+        weather = "autmn";
+    }
+    else if (exanak % 10 == 5) {
+        weather = "winter";
+    }
 
-});
+
+    for (var i in grassArr) {
+        grassArr[i].mul();
+    }
+    for (var i in GrassEaterArr) {
+        GrassEaterArr[i].eat();
+    }
+    for (var i in GrassEaterEaterArr) {
+        GrassEaterEaterArr[i].eat();
+    }
+    for (var i in rivArr) {
+        rivArr[i].eat();
+    }
+    for (var i in lightningArr) {
+        lightningArr[i].eat();
+    }
+    var fs = require('fs')
+    var myJSON = JSON.stringify(obj);
+    if (number % 5 == 0) {
+        obj.grassbazmanal.push(grassbazm);
+        obj.grasseaterbazm.push(grasseaterbazm);
+        obj.grasseatermernel.push(grasseatermernel);
+        obj.grasseatereaterbazm.push(grasseatereaterbazm);
+        obj.grasseatereatermernel.push(grassbazm);
+        obj.lightning.push(lightning);
+
+    }
+    io.sockets.emit('matrix', matrix);
+    io.sockets.emit('weather', weather);
+
+
+}
+setInterval(func, 500);
+
 
 

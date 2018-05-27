@@ -7,7 +7,7 @@ module.exports = class Grass extends yndhanur {
         var index = Math.floor(Math.random() * emptyCells.length);
         var newCell = emptyCells[index];
 
-        if (newCell && this.multiply >= 8) {
+        if (newCell && this.multiply >= 5) {
             var newX = newCell[0];
             var newY = newCell[1];
             matrix[newY][newX] = this.index;
@@ -16,6 +16,6 @@ module.exports = class Grass extends yndhanur {
             grassArr.push(newGrass);
             this.multiply = 0;
         }
+        grassbazm++;
     }
-
 }

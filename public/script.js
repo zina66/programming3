@@ -3,12 +3,35 @@ var yqanak = 40;
 var side = 20;
 var socket;
 var exanak = 1;
+var col = "#acacac";
 
 function setup() {
-    io.sockets.on('matrix', gcel);
     socket = io.connect('http://localhost:3000');
+    socket.on('matrix', gcel);
+
     createCanvas(xqanak * side, yqanak * side);
-    background('#acacac');
+    background(col);
+    socket.on('weather', function (weather) {
+
+        if (weather = "spring") {
+            col = "#55F457";
+
+
+        }
+        else if (weather = "summer") {
+            col = "#F5F85F";
+
+        }
+        else if (weather = "autmn") {
+            col = "#D9B250";
+
+        }
+        else if (weather = "winter") {
+            col = "#C5E4ED";
+
+        }
+    });
+
 }
 
 

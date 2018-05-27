@@ -5,6 +5,7 @@ module.exports = class GrassEater extends yndhanur {
         super(x, y, index);
         this.energy = 3;
         this.directions = [];
+        this.eatten = 0;
     }
     getNewCoordinates() {
         this.directions = [
@@ -29,6 +30,7 @@ module.exports = class GrassEater extends yndhanur {
         var newCell = emptyCells[index];
         if (newCell) {
             this.energy--;
+            this.eatten = 0;
             var newX = newCell[0];
             var newY = newCell[1];
             matrix[this.y][this.x] = 0;
@@ -36,45 +38,60 @@ module.exports = class GrassEater extends yndhanur {
             this.y = newY;
             this.x = newX;
 
-
-            if (this.energy <= 0) {
-                this.die();
-            }
+        }
+        if (this.energy <= 0) {
+            this.die();
         }
     }
+
     eat() {
         this.getNewCoordinates();
+        this.multiply++;
         var emptyCells = this.chooseCell(1);
         var index = Math.floor(Math.random() * emptyCells.length);
         var newCell = emptyCells[index];
         if (newCell) {
-            var newX = newCell[0];
-            var newY = newCell[1];
-            matrix[this.y][this.x] = 0;
-            matrix[newY][newX] = 2;
-            this.y = newY;
-            this.x = newX;
-            this.energy++;
-
-            for (var i in grassArr) {
-                if (newX == grassArr[i].x && newY == grassArr[i].y) {
-                    grassArr.splice(i, 1);
-                    break;
+            if (this.multiply >= 4) {
+                var newX = newCell[0];
+                var newY = newCell[1];
+                matrix[this.y][this.x] = 0;
+                matrix[newY][newX] = 2;
+                this.y = newY;
+                this.x = newX;
+                this.energy++;
+                this.eatten++;
+                for (var i in grassArr) {
+                    if (newX == grassArr[i].x && newY == grassArr[i].y) {
+                        grassArr.splice(i, 1);
+                        break;
+                    }
                 }
             }
-            if (this.energy >= 15) {
-                this.mul();
-            }
+        }
+
+
+        if (this.eatten >= 5 && weather == "spring") {
+            this.mul();
+            this.eatten = 0;
+        }
+        else if (this.eatten >= 3 && weather == "summer") {
+            this.mul();
+            this.eatten = 0;
+        }
+        else if (this.eatten >= 1 && weather == "autmn") {
+            this.mul();
+            this.eatten = 0;
         }
 
         else {
             this.move();
         }
     }
+
     mul() {
         this.getNewCoordinates();
         var emptyCells = this.chooseCell(1);
-        var index = Math.floar(Math.random() * emptyCells.length);
+        var index = Math.floor(Math.random() * emptyCells.length);
         var newCell = emptyCells[index];
         if (newCell) {
             var newX = newCell[0];
@@ -87,6 +104,7 @@ module.exports = class GrassEater extends yndhanur {
             GrassEaterArr.push(newGrassEater);
             this.energy = 3;
         }
+        grasseaterbazm++;
     }
     die() {
         for (var i in GrassEaterArr) {
@@ -96,5 +114,6 @@ module.exports = class GrassEater extends yndhanur {
                 break;
             }
         }
+        grasseatermernel++;
     }
 }

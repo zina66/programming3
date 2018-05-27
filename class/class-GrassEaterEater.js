@@ -66,7 +66,6 @@ module.exports = class GrassEaterEater extends yndhanur {
                 this.mul();
             }
         }
-
         else {
             this.move();
         }
@@ -87,6 +86,7 @@ module.exports = class GrassEaterEater extends yndhanur {
             GrassEaterEaterArr.push(newGrassEaterEater);
             this.energy = 6;
         }
+        grasseatereaterbazm++;
     }
     die() {
         for (var i in GrassEaterEaterArr) {
